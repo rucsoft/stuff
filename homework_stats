@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun May  6 15:34:04 2018
+
+@author: sarucins
+"""
+
+import itertools
+from itertools import product
+
+A = {1, 2, 3}
+B = {3, -6, 2, 0}
+U = {-10, -9, -8, -7, -6, 0, 1, 2, 3, 4}
+
+def complement_of_union(A, B, U):
+    # inputs: A, B and U are of type 'set'
+    # output: a tuple of the type (set, set)
+    
+    #
+    c=A.union(B)
+    d=U.difference(c)
+    return((c,d))
+    #
+    
+def product_of_unions(A, B, S, T):
+    # inputs: A, B, S and T are sets
+    # output: a tuple of the type (set, set)
+    #
+    c=A.union(B)
+    d=S.union(T)
+    v=set(product(c,d))
+    return c,v
+
+A = {5}
+B = {5}
+S = {-1, 0}
+T = {0}
+
+x=product_of_unions(A, B, S, T)
+
+
+
+def intersection_of_complements(A, B, U):
+    # inputs: A, B and U are of type 'set'
+    # output: a tuple of the form (set, set)
+    
+    #
+    d=U.difference(A)
+    c=U.difference(B)
+    v=d.intersection(c)
+    return((d,v))
+
+def union_of_products(A, B, S, T):
+    # inputs: A, B, S and T are sets
+    # output: a tuple of the type (set, set)
+    #
+    a=set(product(A,S))
+    b=set(product(A,T))
+    c=set(product(B,S))
+    d=set(product(B,T))
+    e=a.union(b)
+    f=e.union(c)
+    g=f.union(d)
+    return a,g
+
+x=union_of_products(A, B, S, T)
